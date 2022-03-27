@@ -1,11 +1,34 @@
 package models;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WhiskeyTest {
+    @Test // (1)
+    public void constructorTest(){
 
+        // (2)
+        String expectedName = "Jack Daniels";
+        String expectedType = "Tennessee";
+        int expectedSize = 750;
+        int expectedRating = 10;
+        float expectedPrice = 35.00f;
+        int expectedQty = 10;
+
+        // (3)
+        Whiskey testWhiskey = new Whiskey(expectedName, expectedType,
+                expectedSize,expectedRating, expectedPrice, expectedQty);
+
+        // (4)
+        Assertions.assertEquals(expectedName, testWhiskey.getName());
+        Assertions.assertEquals(expectedType, testWhiskey.getType());
+        Assertions.assertEquals(expectedSize, testWhiskey.getSize());
+        Assertions.assertEquals(expectedRating, testWhiskey.getRating());
+        Assertions.assertEquals(expectedPrice, testWhiskey.getPrice());
+        Assertions.assertEquals(expectedQty, testWhiskey.getQty());
+    }
 
     @Test
     void getNameTest() {
@@ -69,7 +92,7 @@ public class WhiskeyTest {
     void setPriceTest() {
         Whiskey jack = new Whiskey();
         jack.setPrice(28);
-        int expected = 28;
+        float expected = 28;
         assertEquals(jack.getPrice(), expected);
     }
 

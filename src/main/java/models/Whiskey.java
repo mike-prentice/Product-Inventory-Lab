@@ -6,6 +6,12 @@ public class Whiskey {
     private int size;
     private float price;
     private int rating;
+    private int qty;
+
+    public Whiskey(String name, String type, int size, int rating, float price, int qty) {
+    }
+
+    public Whiskey(){}
 
     public String getName() {
         return name;
@@ -45,5 +51,13 @@ public class Whiskey {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }
