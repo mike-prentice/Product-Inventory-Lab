@@ -63,10 +63,23 @@ public class SneakerServiceTest {
         return null;
         // should return a basic array copy of the ArrayList
     }
+
     @Test
-    public boolean delete(int id){
-        return true;
-        // should remove the object with this id from the ArrayList if exits and return true.
-        // Otherwise return false
+    void deleteSneaker() {
+        String expectedName = "Stan Smith";
+        String expectedBrand = "Adidas";
+        String expectedSport = "Tennis";
+        int expectedSize = 10;
+        int expectedQty = 10;
+        float expectedPrice = 80.00f;
+
+        SneakerService sneakerService = new SneakerService();
+        Sneaker testSneaker = SneakerService.create(expectedName, expectedBrand,
+                expectedSport, expectedSize, expectedQty, expectedPrice);
+        System.out.println(testSneaker);
+
+        SneakerService.deleteSneaker(0);
+        System.out.println(testSneaker);
+        Assertions.assertTrue(false);
     }
 }

@@ -16,6 +16,7 @@ public class SneakerService {
                                  int qty, float price) {
         Sneaker createdSneaker = new Sneaker(nextId++, name, brand, sport, size, qty, price);
         inventory.add(createdSneaker);
+        System.out.println(inventory);
         return createdSneaker;
     }
 
@@ -23,7 +24,11 @@ public class SneakerService {
         return inventory.get(id);
     }
 
-    public boolean Sneaker deleteSneaker(int id){
-        inventory.remove(id);
+public static String findAll(){
+        return inventory.toString();
+}
+
+    public static void deleteSneaker(int id) {
+        inventory.remove(0);
     }
 }
