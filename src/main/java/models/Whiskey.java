@@ -11,7 +11,8 @@ public class Whiskey {
     public Whiskey(String name, String type, int size, int rating, float price, int qty) {
     }
 
-    public Whiskey(){}
+    public Whiskey() {
+    }
 
     public String getName() {
         return name;

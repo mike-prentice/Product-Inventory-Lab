@@ -78,7 +78,7 @@ public class SneakerServiceTest {
                 expectedSport, expectedSize, expectedQty, expectedPrice);
         System.out.println(testSneaker);
 
-        SneakerService.deleteSneaker(0);
+        sneakerService.deleteSneaker(0);
         System.out.println(testSneaker);
         Assertions.assertTrue(false);
     }

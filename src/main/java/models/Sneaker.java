@@ -19,7 +19,8 @@ public class Sneaker {
         this.price = price;
     }
 
-    public Sneaker(){}
+    public Sneaker() {
+    }
 
     public int getId() {
         return id;
