@@ -1,6 +1,7 @@
 package models;
 
 public class Whiskey {
+    private int id;
     private String name;
     private String type;
     private int size;
@@ -8,7 +9,11 @@ public class Whiskey {
     private int rating;
     private int qty;
 
-    public Whiskey(String name, String type, int size, int rating, float price, int qty) {
+    public Whiskey(int id, String name, String type, int size, float price, int rating, int qty) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.size = size;
     }
 
     public Whiskey() {
@@ -60,5 +65,9 @@ public class Whiskey {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

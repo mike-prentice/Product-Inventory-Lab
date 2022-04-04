@@ -10,6 +10,7 @@ public class WhiskeyTest {
     public void constructorTest(){
 
         // (2)
+        int expectedId = 1;
         String expectedName = "Jack Daniels";
         String expectedType = "Tennessee";
         int expectedSize = 750;
@@ -18,8 +19,8 @@ public class WhiskeyTest {
         int expectedQty = 10;
 
         // (3)
-        Whiskey testWhiskey = new Whiskey(expectedName, expectedType,
-                expectedSize,expectedRating, expectedPrice, expectedQty);
+        Whiskey testWhiskey = new Whiskey(expectedId, expectedName, expectedType,
+                expectedSize, expectedPrice, expectedRating, expectedQty);
 
         // (4)
         Assertions.assertEquals(expectedName, testWhiskey.getName());

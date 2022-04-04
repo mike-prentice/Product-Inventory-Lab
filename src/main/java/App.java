@@ -75,4 +75,31 @@ switch (input) {
                 exit = true;
         }
     }
+
+    public void handleSelection3(int input){
+        switch (input) {
+            case 1:
+                ws.findAll();
+                break;
+
+            case 2:
+                c.createSneaker();
+                break;
+
+            case 3:
+                c.setNewQty();
+                break;
+
+            case 4:
+                c.chooseToDelete();
+                if (c.confirm.equalsIgnoreCase("yes")) {
+                    ss.deleteSneaker(toDelete);
+                    System.out.println("");
+                }
+                break;
+
+            case 5:
+                exit = true;
+        }
+    }
 }
