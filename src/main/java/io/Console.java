@@ -29,10 +29,10 @@ public class Console {
 
     public static Integer sneakerChoice() {
         System.out.println("Please make a selection....\n" +
-                "1. List Sneakers\n" +
-                "2. Add Sneakers to Inventory\n" +
-                "3. Update Model Inventory\n" +
-                "4. Delete Sneaker\n" +
+                "1. List sneakers\n" +
+                "2. Add sneakers to inventory\n" +
+                "3. Update model inventory\n" +
+                "4. Delete sneaker\n" +
                 "5. Exit");
         selection = scanner.nextInt();
         return selection;
@@ -40,10 +40,10 @@ public class Console {
 
     public static Integer whiskeyChoice() {
         System.out.println("Please make a selection....\n" +
-                "1. List Whiskey\n" +
-                "2. Update Whiskey\n" +
-                "3. Delete Whiskey\n" +
-                "4. Get Ratings\n" +
+                "1. List whiskey inventory\n" +
+                "2. Add whiskey to inventory\n" +
+                "3. Delete whiskey\n" +
+                "4. Get the whiskey ratings for our inventory\n" +
                 "5. Exit");
         selection = scanner.nextInt();
         return selection;
@@ -108,7 +108,7 @@ public class Console {
         System.out.println("Enter Whiskey Size");
         int size = scanner.nextInt();
         System.out.println("Enter Whiskey Price");
-        float price = scanner.nextInt();
+        float price = scanner.nextFloat();
         System.out.println("Enter Whiskey Rating");
         int rating = scanner.nextInt();
         System.out.println("Enter Amount of Inventory");
