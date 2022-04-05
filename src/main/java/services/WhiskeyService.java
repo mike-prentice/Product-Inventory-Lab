@@ -26,7 +26,7 @@ public class WhiskeyService {
     public static List<Whiskey> findAll() {
         for (Whiskey w : inventory
         ) {
-            System.out.println("Sneaker model: " + w.getName() + ", " + "Brand: " + w.getType() + ", " + "Available pairs: " + w.getQty() + " \n");
+            System.out.println("Whiskey name: " + w.getName() + ", " + "Type: " + w.getType() + ", " + "Available bottles: " + w.getQty() + " \n");
         }
         return inventory;
     }

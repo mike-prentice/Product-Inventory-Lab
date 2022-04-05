@@ -1,5 +1,4 @@
 import io.Console;
-import models.Sneaker;
 import services.SneakerService;
 import services.WhiskeyService;
 
@@ -19,15 +18,11 @@ public class App {
         this.ws = ws;
     }
 
-    public App() {
-
-    }
+    public App() {}
 
     public static void main(String[] args) {
         App app = new App();
         app.init();
-
-
     }
 
     public void init() {
