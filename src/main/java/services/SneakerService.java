@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class SneakerService {
@@ -53,10 +54,10 @@ public class SneakerService {
         }
     }
     public static void saveData() throws IOException {
-        String csvFile = "/Users/mike/Desktop/Sneaker.csv";
+        String csvFile = "src/main/Sneaker.csv";
         FileWriter writer = new FileWriter(csvFile); //(1)
 
-        Utils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));  // (2)
+        Utils.writeLine(writer, new ArrayList<String>(Collections.singletonList(String.valueOf(nextId))));  // (2)
 
         for (Sneaker s : inventory) {
             List<String> list = new ArrayList<>(); // (3)
@@ -77,7 +78,7 @@ public class SneakerService {
 
     public static void loadData(){
         // (1)
-        String csvFile = "/Users/mike/Desktop/Sneaker.csv";
+        String csvFile = "src/main/Sneaker.csv";
         String line = "";
         String csvSplitBy = ",";
 

@@ -24,14 +24,13 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         App app = new App();
-        //SneakerService.saveData();
-        SneakerService.loadData();
         app.init();
 
     }
 
     public void init() throws IOException {
         while (exit != true) {
+            SneakerService.loadData();
             Console.printWelcome();
             selection = Console.productChoice();
             //
@@ -43,7 +42,6 @@ public class App {
                         break;
                     case 2:
                         c.createSneaker();
-                        SneakerService.saveData();
                         break;
                     case 3:
                         c.setNewQty();
