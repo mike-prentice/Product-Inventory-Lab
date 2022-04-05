@@ -2,7 +2,9 @@
 
 #### The Brief
 
-At this point, the inventory manager can create, read, update, and delete products. We have implemented a service to manage products and a console to interact with a user. This is awesome but there are some limitations to the application as it is now. One of these limitations is the lack of persistence, and we will tackle this next.
+At this point, the inventory manager can create, read, update, and delete products. We have implemented a service to 
+manage products and a console to interact with a user. This is awesome but there are some limitations to the application 
+as it is now. One of these limitations is the lack of persistence, and we will tackle this next.
 
 ### Objectives
 
@@ -12,7 +14,12 @@ At this point, the inventory manager can create, read, update, and delete produc
 
 ## Part 1 - Persistence
 
-At this moment the application can only save data in memory as it runs. If we stop the program or exit from the application, all of the inventory data is lost. This is not ideal because we may need to shut the program down from time to time. If there is ever a program crash the data will be lost as well. In order to save our data we will need to store it in a place that will persist over time. This is known as **persistent data** or **persistence**. There are many ways of achieving this, in this section we will use a Comma Separated Values(CSV) file to store data. CSV files are a common way to store and represent data. 
+At this moment the application can only save data in memory as it runs. If we stop the program or exit from the 
+application, all of the inventory data is lost. This is not ideal because we may need to shut the program down from 
+time to time. If there is ever a program crash the data will be lost as well. In order to save our data we will need 
+to store it in a place that will persist over time. This is known as **persistent data** or **persistence**. There are 
+many ways of achieving this, in this section we will use a Comma Separated Values(CSV) file to store data. CSV files 
+are a common way to store and represent data. 
 
 ```
 1968,  86, "Greetings"
@@ -24,11 +31,16 @@ At this moment the application can only save data in memory as it runs. If we st
 1974,  97, "The Godfather, Part II"
 1976,  41, "The Last Tycoon"
 ```
-Above is a CSV of a few Robert Deniro movies with the year released and the Rotten Tomatoes score. As you can see the data is separated by commas.
+Above is a CSV of a few Robert Deniro movies with the year released and the Rotten Tomatoes score. As you can see the
+data is separated by commas.
 
-CSV file are a nice way to store simple data, but as the data becomes more complicated so does the the CSV file. Because CSV file are plain text, it is easy to create and save them. However, because they are a simple text file it can be easy for anyone to open and edit these files. One must tread carefully, if the file is edited incorrectly it could lead to improper parsing of the data. CSV files are not easy to read and can be hard to edit sometimes so be mindful. 
+CSV file are a nice way to store simple data, but as the data becomes more complicated so does the the CSV file. 
+Because CSV file are plain text, it is easy to create and save them. However, because they are a simple text file it 
+can be easy for anyone to open and edit these files. One must tread carefully, if the file is edited incorrectly it 
+could lead to improper parsing of the data. CSV files are not easy to read and can be hard to edit sometimes so be mindful. 
 
-CSV are a widely used format for saving data. This means that possibility to share this data with other programs is high. Many programs and programing languages have the ability to process CSV data.
+CSV are a widely used format for saving data. This means that possibility to share this data with other programs is 
+high. Many programs and programing languages have the ability to process CSV data.
 
 **Pros**
 
@@ -56,7 +68,7 @@ The data in the Sneaker CSV will be stored in this format:
 
 Notice the integer on the first line of the data above. This integer will represent the ```nextId``` static value that is stored in the service class.
 
-To begin we will create a 'CSVUtils' class to help with this functionality.
+To begin we will create a 'utils' class to help with this functionality.
 
 
 **SneakerService.java**
@@ -64,7 +76,7 @@ To begin we will create a 'CSVUtils' class to help with this functionality.
 ```
 package utils;
 
-public class CSVUtils {
+public class utils {
     private static final char DEFAULT_SEPARATOR = ',';  // (1)
 	
 	// (2)
@@ -89,17 +101,20 @@ public class CSVUtils {
 ```
 
 1. Create a final variable to hold the comma seperator since we do not need this value to change
-2. To make this method reusable we will pass an Writer object representing the file to write to. The next parameter is a list of String objects that will represent the data of the object to write to CSV format. Now, wherever we want to write some values to CSV we can call this method and pass the values to the file and the data as a List
-3. Now use a StringBuilder to create the CSV string
-4. Finally appent the string to the CSV file
+2. To make this method reusable we will pass an Writer object representing the file to write to. The next parameter is 
+3. a list of String objects that will represent the data of the object to write to CSV format. Now, wherever we want to 
+4. write some values to CSV we can call this method and pass the values to the file and the data as a List
+5. Now use a StringBuilder to create the CSV string
+6. Finally appent the string to the CSV file
 
-Now we have a utility class to help with saving objects to a CSV file whenever we need it. Next, we look at the implementation of the CSVUtility within the service
+Now we have a utility class to help with saving objects to a CSV file whenever we need it. Next, we look at the 
+implementation of the CSVUtility within the service
 
 ```
 String csvFile = "/Users/batman/Desktop/Sneaker.csv";
 FileWriter writer = new FileWriter(csvFile); //(1)
 
-CSVUtils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));  // (2)
+utils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));  // (2)
 
 for (Sneaker s : inventory) {
     List<String> list = new ArrayList<>(); // (3)
@@ -110,7 +125,7 @@ for (Sneaker s : inventory) {
     list.add(String.valueOf(s.getQty()));
     list.add(String.valueOf(s.getPrice()));
 
-    CSVUtils.writeLine(writer, list);  // (4)
+    utils.writeLine(writer, list);  // (4)
 }
 
 // (5)
@@ -120,7 +135,7 @@ writer.close();
 1. Create a FileWriter object and pass the location of the file to write to
 2. First we save the nextId value so it can be read back in we loading the data
 3. Create an ArrayList of string representations of the object data
-4. Use the CSVUtils.writeLine to save the data to file
+4. Use the utils.writeLine to save the data to file
 5. Flush and close connection to the file
 
 ## Part 3 - Reading from File
@@ -162,10 +177,13 @@ private void loadData(){
 ```
 
 1. Set up some values to be used later
-2. We use a *try with resources* block to create a new BufferedReader and catch any exceptions that can occur. If there are problems retrieving the file, the catch block with handle exception
-3. Begin setting the state of the service by reading in the first line. If you remember the first line represents the nextId value.
-4. For every line read in from the CSV file, the program with split the string values by a ','. Then parsed into the proper data type if necessary.
-5. Finally create a new item using the CSV data to set the initial state and add it to the inventory.
+2. We use a *try with resources* block to create a new BufferedReader and catch any exceptions that can occur. If there
+3. are problems retrieving the file, the catch block with handle exception
+4. Begin setting the state of the service by reading in the first line. If you remember the first line represents the 
+5. nextId value.
+6. For every line read in from the CSV file, the program with split the string values by a ','. Then parsed into the 
+7. proper data type if necessary.
+8. Finally create a new item using the CSV data to set the initial state and add it to the inventory.
 
 ## Conclusion
 

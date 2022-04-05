@@ -22,6 +22,9 @@ public class Sneaker {
     public Sneaker() {
     }
 
+    public Sneaker(int id, String name, String brand, String sport, int qty, float price) {
+    }
+
     public int getId() {
         return id;
     }

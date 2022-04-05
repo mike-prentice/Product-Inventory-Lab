@@ -3,6 +3,7 @@ package io;
 import services.SneakerService;
 import services.WhiskeyService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Console {
@@ -11,7 +12,7 @@ public class Console {
     private static String whiskey = "";
     static Scanner scanner = new Scanner(System.in);
     static int selection;
-    static int toDelete;
+    public static int toDelete;
     public static String confirm = "";
 
     public Console(){};
@@ -42,17 +43,19 @@ public class Console {
         System.out.println("Please make a selection....\n" +
                 "1. List whiskey inventory\n" +
                 "2. Add whiskey to inventory\n" +
-                "3. Delete whiskey\n" +
-                "4. Get the whiskey ratings for our inventory\n" +
-                "5. Exit");
+                "3. Change bottle inventory\n" +
+                "4. Delete whiskey\n" +
+                 "5. Get the whiskey ratings for our inventory\n" +
+                 "6. Exit");
         selection = scanner.nextInt();
         return selection;
     }
 
     public static Integer productChoice() {
         System.out.println("What type of product are you interested in?\n" +
-                "1. Sneakers\n\n" +
-                "2. Whiskey");
+                "1. Sneakers\n" +
+                "2. Whiskey\n" +
+                "3. Exit");
         selection = scanner.nextInt();
         return selection;
     }
@@ -71,7 +74,7 @@ public class Console {
         return toDelete;
     }
 
-    public static void createSneaker() {
+    public static void createSneaker() throws IOException {
         scanner.nextLine();
         System.out.println("Enter Sneaker Name");
         String name = scanner.nextLine();
@@ -95,7 +98,7 @@ public class Console {
         sneaker = scanner.nextLine();
         System.out.println("Enter new quantity");
         newQty = scanner.nextInt();
-        WhiskeyService.setQty(whiskey, newQty);
+        SneakerService.setQty(sneaker, newQty);
     }
 
 
@@ -118,7 +121,7 @@ public class Console {
     }
 
 
-    public int chooseToDeleteWhiskey() {
+    public static Integer chooseToDeleteWhiskey() {
         System.out.println("Enter id to delete");
         toDelete = scanner.nextInt();
         if (toDelete > WhiskeyService.inventory.size()){
@@ -132,6 +135,12 @@ public class Console {
         return toDelete;
     }
 
-    public void setNewWhiskeyQty() {
+    public static void setNewWhiskeyQty(){
+        scanner.nextLine();
+        System.out.println("Enter product name");
+        sneaker = scanner.nextLine();
+        System.out.println("Enter new quantity");
+        newQty = scanner.nextInt();
+        WhiskeyService.setQty(whiskey, newQty);
     }
 }

@@ -4,10 +4,12 @@ import models.Sneaker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 public class SneakerServiceTest {
 
     @Test
-    public void createTest(){
+    public void createTest() throws IOException {
 
         // (1)
         String expectedName = "Stan Smith";
@@ -43,7 +45,7 @@ public class SneakerServiceTest {
     }
 
     @Test
-    public void findSneakerTest(){
+    public void findSneakerTest() throws IOException {
         String expectedName = "Stan Smith";
         String expectedBrand = "Adidas";
         String expectedSport = "Tennis";
@@ -65,7 +67,7 @@ public class SneakerServiceTest {
     }
 
     @Test
-    void deleteSneaker() {
+    void deleteSneaker() throws IOException {
         String expectedName = "Stan Smith";
         String expectedBrand = "Adidas";
         String expectedSport = "Tennis";

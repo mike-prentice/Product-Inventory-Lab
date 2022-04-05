@@ -42,4 +42,11 @@ public class WhiskeyService {
             }
         }
     }
+
+    public static void getRatings(){
+        for (Whiskey w : inventory
+        ) {
+            System.out.println("Whiskey name: " + w.getName() + ", " + "Rating: " + w.getRating() + ", " + "Available bottles: " + w.getQty() + " \n");
+        }
+    }
 }
