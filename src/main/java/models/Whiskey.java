@@ -14,6 +14,9 @@ public class Whiskey {
         this.name = name;
         this.type = type;
         this.size = size;
+        this.price = price;
+        this.rating = rating;
+        this.qty = qty;
     }
 
     public Whiskey() {

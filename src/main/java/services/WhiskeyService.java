@@ -11,7 +11,7 @@ public class WhiskeyService {
 
     public static List<Whiskey> inventory = new ArrayList<>();
 
-    public static Whiskey create(int id, String name, String type,
+    public static Whiskey createWhiskey(String name, String type,
                                  int size, float price,
                                  int rating, int qty) {
         Whiskey createdWhiskey = new Whiskey(nextId++, name, type, size, price, rating, qty);

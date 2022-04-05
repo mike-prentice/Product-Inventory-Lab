@@ -23,83 +23,73 @@ public class App {
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         App app = new App();
         app.init();
 
 
     }
 
-    public void init(){
+    public void init() {
         while (exit != true) {
             Console.printWelcome();
             selection = Console.productChoice();
-            handleSelection(selection);
-            handleSelection2(selection);
-        }
-    }
+            //
+            if (selection == 1) {
+                selection = c.sneakerChoice();
+                switch (selection) {
+                    case 1:
+                        ss.findAll();
+                        break;
 
-    public void handleSelection(int input){
-switch (input) {
-    case 1:
-         selection = c.sneakerChoice();
-        break;
-    case 2:
-         selection = c.whiskeyChoice();
-}
-    }
+                    case 2:
+                        c.createSneaker();
+                        break;
 
-    public void handleSelection2(int input){
-        switch (input) {
-            case 1:
-                ss.findAll();
-                break;
+                    case 3:
+                        c.setNewQty();
+                        break;
 
-            case 2:
-                c.createSneaker();
-                break;
+                    case 4:
+                        c.chooseToDelete();
+                        if (c.confirm.equalsIgnoreCase("yes")) {
+                            ss.deleteSneaker(toDelete);
+                            System.out.println("");
+                        }
+                        break;
 
-            case 3:
-                c.setNewQty();
-                break;
-
-                case 4:
-                c.chooseToDelete();
-                if (c.confirm.equalsIgnoreCase("yes")) {
-                    ss.deleteSneaker(toDelete);
-                    System.out.println("");
+                    case 5:
+                        exit = true;
                 }
-                break;
+            } else {
+                selection = c.whiskeyChoice();
+                switch (selection) {
+                    case 1:
+                        ws.findAll();
+                        break;
 
-            case 5:
-                exit = true;
-        }
-    }
+                    case 2:
+                        c.createWhisky();
+                        break;
 
-    public void handleSelection3(int input){
-        switch (input) {
-            case 1:
-                ws.findAll();
-                break;
+                    case 3:
+                        c.setNewWhiskeyQty();
+                        break;
 
-            case 2:
-                c.createSneaker();
-                break;
+                    case 4:
+                        c.chooseToDeleteWhiskey();
+                        if (c.confirm.equalsIgnoreCase("yes")) {
+                            ws.deleteWhiskey(toDelete);
+                            System.out.println("Deleted");
+                        }
+                        break;
 
-            case 3:
-                c.setNewQty();
-                break;
-
-            case 4:
-                c.chooseToDelete();
-                if (c.confirm.equalsIgnoreCase("yes")) {
-                    ss.deleteSneaker(toDelete);
-                    System.out.println("");
+                    case 5:
+                        exit = true;
                 }
-                break;
-
-            case 5:
-                exit = true;
+            }
         }
     }
 }
+
+

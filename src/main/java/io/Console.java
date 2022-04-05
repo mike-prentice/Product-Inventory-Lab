@@ -1,12 +1,14 @@
 package io;
 
 import services.SneakerService;
+import services.WhiskeyService;
 
 import java.util.Scanner;
 
 public class Console {
     private static int newQty;
     private static String sneaker = "";
+    private static String whiskey = "";
     static Scanner scanner = new Scanner(System.in);
     static int selection;
     static int toDelete;
@@ -93,7 +95,43 @@ public class Console {
         sneaker = scanner.nextLine();
         System.out.println("Enter new quantity");
         newQty = scanner.nextInt();
-        SneakerService.setQty(sneaker, newQty);
+        WhiskeyService.setQty(whiskey, newQty);
     }
 
+
+    public static void createWhisky() {
+        scanner.nextLine();
+        System.out.println("Enter Whiskey Name");
+        String name = scanner.nextLine();
+        System.out.println("Enter Whiskey Type");
+        String type = scanner.nextLine();
+        System.out.println("Enter Whiskey Size");
+        int size = scanner.nextInt();
+        System.out.println("Enter Whiskey Price");
+        float price = scanner.nextInt();
+        System.out.println("Enter Whiskey Rating");
+        int rating = scanner.nextInt();
+        System.out.println("Enter Amount of Inventory");
+        int qty = scanner.nextInt();
+        WhiskeyService.createWhiskey(name, type, size, price, rating, qty);
+
+    }
+
+
+    public int chooseToDeleteWhiskey() {
+        System.out.println("Enter id to delete");
+        toDelete = scanner.nextInt();
+        if (toDelete > WhiskeyService.inventory.size()){
+            System.out.println("That index doesn't exist, try again...");
+            System.out.println("Enter id to delete");
+            toDelete = scanner.nextInt();
+        }
+        System.out.println("Are you sure you want to delete " + WhiskeyService.inventory.get(toDelete).getName()
+                + "? \n Yes or NO");
+        confirm = scanner.next();
+        return toDelete;
+    }
+
+    public void setNewWhiskeyQty() {
+    }
 }

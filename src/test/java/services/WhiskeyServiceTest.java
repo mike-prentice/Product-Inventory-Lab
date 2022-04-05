@@ -11,7 +11,6 @@ public class WhiskeyServiceTest {
     public void createTest(){
 
         // (1)
-        int expectedId = 1;
         String expectedName = "Jack Daniels";
         String expectedType = "Tennessee";
         int expectedSize = 750;
@@ -21,7 +20,7 @@ public class WhiskeyServiceTest {
 
         // (2)
         WhiskeyService whiskeyService = new WhiskeyService();
-        Whiskey testWhiskey = WhiskeyService.create(expectedId++, expectedName, expectedType,
+        Whiskey testWhiskey = WhiskeyService.createWhiskey(expectedName, expectedType,
                 expectedSize, expectedPrice, expectedRating, expectedQty);
 
         // (3)
@@ -55,7 +54,7 @@ public class WhiskeyServiceTest {
         int expectedQty = 5;
 
         WhiskeyService whiskeyService = new WhiskeyService();
-        Whiskey testWhiskey = whiskeyService.create(expectedId, expectedName, expectedType,
+        Whiskey testWhiskey = whiskeyService.createWhiskey(expectedName, expectedType,
                 expectedSize, expectedPrice, expectedRating, expectedQty);
 
         Assertions.assertEquals(testWhiskey, whiskeyService.findWhiskey(0));
@@ -79,7 +78,7 @@ public class WhiskeyServiceTest {
         WhiskeyService.inventory.clear();
 
         WhiskeyService whiskeyService = new WhiskeyService();
-        Whiskey testWhiskey = whiskeyService.create(expectedId, expectedName, expectedType,
+        Whiskey testWhiskey = whiskeyService.createWhiskey(expectedName, expectedType,
                 expectedSize, expectedPrice, expectedRating, expectedQty);
         System.out.println(testWhiskey);
 
