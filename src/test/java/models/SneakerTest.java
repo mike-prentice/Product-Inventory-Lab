@@ -14,13 +14,12 @@ public class SneakerTest {
         String expectedName = "Stan Smith";
         String expectedBrand = "Adidas";
         String expectedSport = "Tennis";
-        int expectedSize = 11;
         int expectedQty = 10;
         float expectedPrice = 80.00f;
 
         // (3)
         Sneaker testSneaker = new Sneaker(expectedId, expectedName, expectedBrand,
-                expectedSport, expectedSize, expectedQty,expectedPrice);
+                expectedSport, expectedQty,expectedPrice);
 
         // (4)
         Assertions.assertEquals(expectedId, testSneaker.getId());
@@ -97,24 +96,6 @@ public class SneakerTest {
         sneaker.setSport("Running");
         String expected = "Running";
         assertEquals(sneaker.getSport(), expected);
-    }
-
-    @Test
-    void getSize() {
-        Sneaker sneaker = new Sneaker();
-        int expected = 11;
-        sneaker.setSize(11);
-        int actual =  sneaker.getSize();
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    void setSize() {
-        Sneaker sneaker = new Sneaker();
-        sneaker.setSize(10);
-        int expected = 10;
-        assertEquals(sneaker.getSize(), expected);
-
     }
 
     @Test

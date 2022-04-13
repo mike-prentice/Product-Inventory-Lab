@@ -1,13 +1,14 @@
 package services;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import models.Sneaker;
 import utils.Utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,14 +19,15 @@ public class SneakerService {
     private static int nextId = 1;  // (1)
 
     public static List<Sneaker> inventory = new ArrayList<>();
+    ;
 
     public SneakerService() throws IOException {
     }
 
     public static Sneaker create(String name, String brand,
-                                 String sport, int size,
+                                 String sport,
                                  int qty, float price) throws IOException {
-        Sneaker createdSneaker = new Sneaker(nextId++, name, brand, sport, size, qty, price);
+        Sneaker createdSneaker = new Sneaker(nextId++, name, brand, sport, qty, price);
         inventory.add(createdSneaker);
         return createdSneaker;
     }
@@ -54,56 +56,63 @@ public class SneakerService {
         }
     }
     public static void saveData() throws IOException {
-        String csvFile = "src/main/Sneaker.csv";
-        FileWriter writer = new FileWriter(csvFile); //(1)
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(new File("sneaker.json"), inventory);
 
-        Utils.writeLine(writer, new ArrayList<String>(Collections.singletonList(String.valueOf(nextId))));  // (2)
-
-        for (Sneaker s : inventory) {
-            List<String> list = new ArrayList<>(); // (3)
-            list.add(String.valueOf(s.getId()));
-            list.add(s.getName());
-            list.add(s.getBrand());
-            list.add(s.getSport());
-            list.add(String.valueOf(s.getQty()));
-            list.add(String.valueOf(s.getPrice()));
-
-            Utils.writeLine(writer, list);  // (4)
-        }
-
-// (5)
-        writer.flush();
-        writer.close();
+        //        String csvFile = "src/main/Sneaker.csv";
+//        FileWriter writer = new FileWriter(csvFile); //(1)
+//
+//        Utils.writeLine(writer, new ArrayList<String>(Collections.singletonList(String.valueOf(nextId))));  // (2)
+//
+//        for (Sneaker s : inventory) {
+//            List<String> list = new ArrayList<>(); // (3)
+//            list.add(String.valueOf(s.getId()));
+//            list.add(s.getName());
+//            list.add(s.getBrand());
+//            list.add(s.getSport());
+//            list.add(String.valueOf(s.getQty()));
+//            list.add(String.valueOf(s.getPrice()));
+//
+//            Utils.writeLine(writer, list);  // (4)
+//        }
+//
+//// (5)
+//        writer.flush();
+//        writer.close();
     }
 
-    public static void loadData(){
-        // (1)
-        String csvFile = "src/main/Sneaker.csv";
-        String line = "";
-        String csvSplitBy = ",";
+    public static void loadData() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        inventory = objectMapper.readValue(new File("sneaker.json"), new TypeReference<List<Sneaker>>(){});
 
-        // (2)
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            nextId = Integer.parseInt(br.readLine());  // (3)
-
-            while ((line = br.readLine()) != null) {
-                // split line with comma
-                String[] beer = line.split(csvSplitBy);
-
-                // (4)
-                int id = Integer.parseInt(beer[0]);
-                String name = beer[1];
-                String brand = beer[2];
-                String sport = beer[3];
-                int qty = Integer.parseInt(beer[4]);
-                float price = Float.parseFloat(beer[5]);
-
-                // (5)
-                inventory.add(new Sneaker(id, name, brand, sport, qty, price));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //        // (1)
+//        String csvFile = "src/main/Sneaker.csv";
+//        String line = "";
+//        String csvSplitBy = ",";
+//
+//        // (2)
+//        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+//            nextId = Integer.parseInt(br.readLine());  // (3)
+//
+//            while ((line = br.readLine()) != null) {
+//                // split line with comma
+//                String[] beer = line.split(csvSplitBy);
+//
+//                // (4)
+//                int id = Integer.parseInt(beer[0]);
+//                String name = beer[1];
+//                String brand = beer[2];
+//                String sport = beer[3];
+//                int qty = Integer.parseInt(beer[4]);
+//                float price = Float.parseFloat(beer[5]);
+//
+//                // (5)
+//                SneakerService.inventory.add(new Sneaker(id, name, brand, sport, qty, price));
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }

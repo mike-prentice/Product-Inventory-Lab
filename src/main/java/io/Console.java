@@ -82,13 +82,12 @@ public class Console {
         String brand = scanner.nextLine();
         System.out.println("Enter Sneaker Sport");
         String sport = scanner.nextLine();
-        System.out.println("Enter Sneaker Size");
-        int size = scanner.nextInt();
         System.out.println("Enter Sneaker Quantity");
         int qty = scanner.nextInt();
         System.out.println("Enter Sneaker Price");
         float price = scanner.nextFloat();
-        SneakerService.create(name, brand, sport, size, qty, price);
+        SneakerService.create(name, brand, sport, qty, price);
+
 
     }
 

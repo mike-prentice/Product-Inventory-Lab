@@ -29,9 +29,10 @@ public class App {
     }
 
     public void init() throws IOException {
-        while (exit != true) {
-            SneakerService.loadData();
+        SneakerService.loadData();
+        WhiskeyService.loadData();
             Console.printWelcome();
+        while (exit != true) {
             selection = Console.productChoice();
             //
             if (selection == 1) {
@@ -77,8 +78,10 @@ public class App {
                         ws.getRatings();
                 }
             } else if (selection == 3){
-                exit = true;
                 SneakerService.saveData();
+                WhiskeyService.saveData();
+                exit = true;
+
             }
         }
     }
